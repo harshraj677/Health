@@ -1,0 +1,62 @@
+{
+  "name": "vaccine-tracker-app",
+  "version": "1.0.0",
+  "description": "A vaccine tracker recommendation application.",
+  "main": "index.js",
+  "scripts": {
+    "start": "react-scripts start",
+    "build": "react-scripts build",
+    "test": "react-scripts test",
+    "eject": "react-scripts eject"
+  },
+  "keywords": [
+    "vaccine",
+    "tracker",
+    "recommendation",
+    "health",
+    "medical"
+  ],
+  "author": "Your Name",
+  "license": "MIT",
+  "dependencies": {
+    "@emotion/react": "^11.14.0",
+    "@emotion/styled": "^11.14.0",
+    "@mui/icons-material": "^5.17.1",
+    "@mui/material": "^5.17.1",
+    "@tanstack/react-query": "^5.72.2",
+    "axios": "^1.8.4",
+    "dayjs": "^1.11.13",
+    "formik": "^2.4.6",
+    "moment": "^2.30.1",
+    "react": "^18.3.1",
+    "react-dom": "^18.3.1",
+    "react-icons": "^5.5.0",
+    "react-router-dom": "^7.5.0",
+    "react-scripts": "^5.0.1",
+    "react-toastify": "^11.0.5",
+    "yup": "^1.6.1"
+  },
+  "devDependencies": {
+    "@types/react": "^17.0.85",
+    "@types/react-dom": "^17.0.26",
+    "@types/react-router-dom": "^5.3.3",
+    "typescript": "^4.9.5"
+  },
+  "homepage": "http://yourhomepage.com",
+  "repository": {
+    "type": "git",
+    "url": "http://github.com/yourusername/vaccine-tracker-app.git"
+  },
+  "browserslist": {
+    "production": [
+      ">0.2%",
+      "not dead",
+      "not op_mini all"
+    ],
+    "development": [
+      "last 1 chrome version",
+      "last 1 firefox version",
+      "last 1 safari version"
+    ]
+  }
+}
