@@ -1,0 +1,10 @@
+.home-footer {
+    background-color: #007bff; /* Blue color */
+    color: #ffffff; /* White text for contrast */
+    text-align: center;
+    padding: 10px 0;
+    font-size: 0.9rem;
+    position: fixed;
+    bottom: 0;
+    width: 100%;
+}

@@ -8,28 +8,41 @@ import PreviousReports from './components/Reports/PreviousReports';
 import WhatsApp from './components/ContactOptions/WhatsApp';
 import SMS from './components/ContactOptions/SMS';
 import Call from './components/ContactOptions/Call';
+import Dashboard from './components/Home/Dashboard'; // Corrected path
 import './assets/styles/global.css';
 
 const SignInSignOut: React.FC = () => {
     return <div>Sign In / Sign Out Page</div>;
 };
 
-const App = () => {
-  return (
-    <Router>
-      <Routes>
-        <Route path="/" element={<HomePage />} />
-        <Route path="/login" element={<Login />} />
-        <Route path="/signup" element={<Signup />} />
-        <Route path="/signin-signout" element={<SignInSignOut />} />
-        <Route path="/recommendations" element={<VaccineRecommendations />} />
-        <Route path="/reports" element={<PreviousReports />} />
-        <Route path="/contact/whatsapp" element={<WhatsApp />} />
-        <Route path="/contact/sms" element={<SMS />} />
-        <Route path="/contact/call" element={<Call />} />
-      </Routes>
-    </Router>
-  );
+const App: React.FC = () => {
+    return (
+        <Router>
+            <Routes>
+                {/* Home Page */}
+                <Route path="/" element={<HomePage />} />
+
+                {/* Authentication Pages */}
+                <Route path="/login" element={<Login />} />
+                <Route path="/signup" element={<Signup />} />
+                <Route path="/signin-signout" element={<SignInSignOut />} />
+
+                {/* Vaccine Recommendations */}
+                <Route path="/recommendations" element={<VaccineRecommendations />} />
+
+                {/* Reports */}
+                <Route path="/reports" element={<PreviousReports />} />
+
+                {/* Contact Options */}
+                <Route path="/contact/whatsapp" element={<WhatsApp />} />
+                <Route path="/contact/sms" element={<SMS />} />
+                <Route path="/contact/call" element={<Call />} />
+
+                {/* Dashboard */}
+                <Route path="/dashboard" element={<Dashboard />} /> {/* Added Dashboard route */}
+            </Routes>
+        </Router>
+    );
 };
 
 export default App;

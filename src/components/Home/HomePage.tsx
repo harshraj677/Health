@@ -2,38 +2,11 @@ import React from 'react';
 import './HomePage.css'; // Assuming you have a CSS file for styling
 import Header from './Header'; // Corrected path
 import Footer from './Footer'; // Corrected path
-import { Menu, MenuItem, IconButton } from '@mui/material';
-import MoreVertIcon from '@mui/icons-material/MoreVert';
 
 const HomePage: React.FC = () => {
-    const [anchorEl, setAnchorEl] = React.useState<null | HTMLElement>(null);
-
-    const handleMenuOpen = (event: React.MouseEvent<HTMLElement>) => {
-        setAnchorEl(event.currentTarget);
-    };
-
-    const handleMenuClose = () => {
-        setAnchorEl(null);
-    };
-
     return (
         <div className="home-container">
             <Header />
-            <div className="user-menu">
-                <IconButton onClick={handleMenuOpen}>
-                    <MoreVertIcon />
-                </IconButton>
-                <Menu
-                    anchorEl={anchorEl}
-                    open={Boolean(anchorEl)}
-                    onClose={handleMenuClose}
-                >
-                    <MenuItem onClick={handleMenuClose}>Home</MenuItem>
-                    <MenuItem onClick={handleMenuClose}>Sign In</MenuItem>
-                    <MenuItem onClick={handleMenuClose}>Login</MenuItem>
-                    <MenuItem onClick={handleMenuClose}>Learn News</MenuItem>
-                </Menu>
-            </div>
             <main className="main-content">
                 <section className="info-section">
                     <h2>Welcome to Vaccine Tracker</h2>

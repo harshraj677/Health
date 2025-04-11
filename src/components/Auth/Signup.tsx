@@ -1,68 +1,106 @@
 import React, { useState } from 'react';
+import './Auth.css'; // Custom CSS for styling
 
 const Signup: React.FC = () => {
-    const [username, setUsername] = useState('');
     const [email, setEmail] = useState('');
     const [password, setPassword] = useState('');
-    const [age, setAge] = useState('');
-    const [gender, setGender] = useState('');
+    const [confirmPassword, setConfirmPassword] = useState('');
+    const [passwordStrength, setPasswordStrength] = useState(0);
+    const [showPassword, setShowPassword] = useState(false);
+    const [termsAccepted, setTermsAccepted] = useState(false);
+    const [error, setError] = useState('');
 
-    const handleSubmit = (e: React.FormEvent) => {
+    const validatePasswordStrength = (password: string) => {
+        let strength = 0;
+        if (password.length >= 8) strength++;
+        if (/[A-Z]/.test(password)) strength++;
+        if (/[a-z]/.test(password)) strength++;
+        if (/[0-9]/.test(password)) strength++;
+        if (/[@$!%*?&#]/.test(password)) strength++;
+        setPasswordStrength(strength);
+    };
+
+    const handleSignup = (e: React.FormEvent) => {
         e.preventDefault();
-        // Add form validation and submission logic here
-        console.log({ username, email, password, age, gender });
+        if (!email || !password || !confirmPassword) {
+            setError('Please fill in all fields');
+            return;
+        }
+        if (!/\S+@\S+\.\S+/.test(email)) {
+            setError('Please enter a valid email address');
+            return;
+        }
+        if (password !== confirmPassword) {
+            setError('Passwords do not match');
+            return;
+        }
+        if (!termsAccepted) {
+            setError('You must accept the terms and conditions');
+            return;
+        }
+        console.log('Signing up with:', { email, password });
+        setError('');
     };
 
     return (
-        <div className="signup-container">
-            <h2>Sign Up</h2>
-            <form onSubmit={handleSubmit}>
-                <div>
-                    <label>Username:</label>
-                    <input
-                        type="text"
-                        value={username}
-                        onChange={(e) => setUsername(e.target.value)}
-                        required
-                    />
-                </div>
-                <div>
-                    <label>Email:</label>
+        <div className="auth-container">
+            <h1>Signup</h1>
+            <form onSubmit={handleSignup} className="auth-form">
+                <label>
+                    Email:
                     <input
                         type="email"
                         value={email}
                         onChange={(e) => setEmail(e.target.value)}
                         required
                     />
+                </label>
+                <label>
+                    Password:
+                    <div className="password-container">
+                        <input
+                            type={showPassword ? 'text' : 'password'}
+                            value={password}
+                            onChange={(e) => {
+                                setPassword(e.target.value);
+                                validatePasswordStrength(e.target.value);
+                            }}
+                            required
+                        />
+                        <button
+                            type="button"
+                            className="toggle-password"
+                            onClick={() => setShowPassword(!showPassword)}
+                        >
+                            {showPassword ? 'Hide' : 'Show'}
+                        </button>
+                    </div>
+                </label>
+                <div className="password-strength">
+                    <progress value={passwordStrength} max="5"></progress>
+                    <p>
+                        Password Strength: {['Weak', 'Fair', 'Good', 'Strong', 'Very Strong'][passwordStrength]}
+                    </p>
                 </div>
-                <div>
-                    <label>Password:</label>
+                <label>
+                    Confirm Password:
                     <input
                         type="password"
-                        value={password}
-                        onChange={(e) => setPassword(e.target.value)}
+                        value={confirmPassword}
+                        onChange={(e) => setConfirmPassword(e.target.value)}
                         required
                     />
-                </div>
-                <div>
-                    <label>Age:</label>
+                </label>
+                <label className="terms">
                     <input
-                        type="number"
-                        value={age}
-                        onChange={(e) => setAge(e.target.value)}
-                        required
+                        type="checkbox"
+                        checked={termsAccepted}
+                        onChange={(e) => setTermsAccepted(e.target.checked)}
                     />
-                </div>
-                <div>
-                    <label>Gender:</label>
-                    <select value={gender} onChange={(e) => setGender(e.target.value)} required>
-                        <option value="">Select</option>
-                        <option value="male">Male</option>
-                        <option value="female">Female</option>
-                        <option value="other">Other</option>
-                    </select>
-                </div>
-                <button type="submit">Sign Up</button>
+                    I accept the terms and conditions
+                </label>
+                {error && <p className="error">{error}</p>}
+                <button type="submit" className="auth-button">Signup</button>
             </form>
         </div>
     );

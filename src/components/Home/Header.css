@@ -37,3 +37,35 @@
     background: rgba(0, 0, 0, 0.3); /* Dark overlay for better text visibility */
     z-index: 1;
 }
+
+/* App Bar Styling */
+.app-bar {
+  background-color: #00796b; /* Professional teal color */
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+}
+
+/* App Title Styling */
+.app-title {
+  font-family: 'Arial', sans-serif;
+  font-weight: bold;
+  text-transform: uppercase;
+  color: #ffffff;
+}
+
+/* Navigation Buttons Styling */
+.nav-buttons {
+  display: flex;
+  gap: 10px;
+}
+
+.nav-button {
+  font-size: 1rem;
+  font-weight: 500;
+  text-transform: capitalize;
+  transition: background-color 0.3s ease;
+}
+
+.nav-button:hover {
+  background-color: rgba(255, 255, 255, 0.2);
+  border-radius: 5px;
+}

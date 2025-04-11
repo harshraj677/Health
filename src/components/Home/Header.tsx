@@ -1,4 +1,5 @@
 import React from 'react';
+import { useNavigate } from 'react-router-dom'; // Import useNavigate for navigation
 import AppBar from '@mui/material/AppBar';
 import Box from '@mui/material/Box';
 import Toolbar from '@mui/material/Toolbar';
@@ -6,142 +7,119 @@ import IconButton from '@mui/material/IconButton';
 import Typography from '@mui/material/Typography';
 import Menu from '@mui/material/Menu';
 import MenuIcon from '@mui/icons-material/Menu';
-import Container from '@mui/material/Container';
 import Avatar from '@mui/material/Avatar';
 import Button from '@mui/material/Button';
 import Tooltip from '@mui/material/Tooltip';
 import MenuItem from '@mui/material/MenuItem';
-import AdbIcon from '@mui/icons-material/Adb';
+import './Header.css'; // Custom CSS for styling
 
-const pages = ['Products', 'Pricing', 'Blog'];
-const settings = ['Profile', 'Account', 'Dashboard', 'Logout'];
+const healthcareOptions = ['Vaccination Info', 'Health Tips', 'Emergency Contacts'];
+const navigationButtons = ['Home', 'News', 'Sign In', 'Login'];
 
-const ResponsiveAppBar: React.FC = () => {
-  const [anchorElNav, setAnchorElNav] = React.useState<null | HTMLElement>(null);
+const Header: React.FC = () => {
+  const [anchorElMenu, setAnchorElMenu] = React.useState<null | HTMLElement>(null);
   const [anchorElUser, setAnchorElUser] = React.useState<null | HTMLElement>(null);
+  const navigate = useNavigate(); // Initialize useNavigate for navigation
 
-  const handleOpenNavMenu = (event: React.MouseEvent<HTMLElement>) => {
-    setAnchorElNav(event.currentTarget);
+  const handleMenuOpen = (event: React.MouseEvent<HTMLElement>) => {
+    setAnchorElMenu(event.currentTarget);
   };
 
-  const handleOpenUserMenu = (event: React.MouseEvent<HTMLElement>) => {
+  const handleMenuClose = () => {
+    setAnchorElMenu(null);
+  };
+
+  const handleUserMenuOpen = (event: React.MouseEvent<HTMLElement>) => {
     setAnchorElUser(event.currentTarget);
   };
 
-  const handleCloseNavMenu = () => {
-    setAnchorElNav(null);
-  };
-
-  const handleCloseUserMenu = () => {
+  const handleUserMenuClose = () => {
     setAnchorElUser(null);
   };
 
+  const handleNavigation = (button: string) => {
+    if (button === 'Sign In') {
+      navigate('/signin'); // Redirect to SignIn page
+    } else if (button === 'Login') {
+      navigate('/login'); // Redirect to Login page
+    } else if (button === 'Home') {
+      navigate('/'); // Redirect to Home page
+    } else if (button === 'News') {
+      navigate('/news'); // Redirect to News page
+    }
+  };
+
   return (
-    <AppBar position="static">
-      <Container maxWidth="xl">
-        <Toolbar disableGutters>
-          {/* 3-dots button on the left */}
-          <Box sx={{ display: 'flex', alignItems: 'center' }}>
-            <IconButton
-              size="large"
-              aria-label="menu"
-              aria-controls="menu-appbar"
-              aria-haspopup="true"
-              onClick={handleOpenNavMenu}
+    <AppBar position="static" className="app-bar">
+      <Toolbar>
+        {/* Left: 3-horizontal-line menu */}
+        <IconButton
+          size="large"
+          edge="start"
+          color="inherit"
+          aria-label="menu"
+          onClick={handleMenuOpen}
+        >
+          <MenuIcon />
+        </IconButton>
+        <Menu
+          anchorEl={anchorElMenu}
+          open={Boolean(anchorElMenu)}
+          onClose={handleMenuClose}
+        >
+          {healthcareOptions.map((option) => (
+            <MenuItem key={option} onClick={handleMenuClose}>
+              {option}
+            </MenuItem>
+          ))}
+        </Menu>
+
+        {/* Center: App Title */}
+        <Typography
+          variant="h6"
+          component="div"
+          sx={{ flexGrow: 1 }}
+          className="app-title"
+        >
+          VaxAI Bharat
+        </Typography>
+
+        {/* Right: Navigation Buttons */}
+        <Box className="nav-buttons">
+          {navigationButtons.map((button) => (
+            <Button
+              key={button}
               color="inherit"
+              className="nav-button"
+              onClick={() => handleNavigation(button)} // Add navigation logic
             >
-              <MenuIcon />
+              {button}
+            </Button>
+          ))}
+        </Box>
+
+        {/* User Avatar and Settings */}
+        <Box sx={{ flexGrow: 0 }}>
+          <Tooltip title="Open settings">
+            <IconButton onClick={handleUserMenuOpen} sx={{ p: 0 }}>
+              <Avatar alt="User Avatar" src="/static/images/avatar/2.jpg" />
             </IconButton>
-            <Menu
-              id="menu-appbar"
-              anchorEl={anchorElNav}
-              anchorOrigin={{
-                vertical: 'bottom',
-                horizontal: 'left',
-              }}
-              keepMounted
-              transformOrigin={{
-                vertical: 'top',
-                horizontal: 'left',
-              }}
-              open={Boolean(anchorElNav)}
-              onClose={handleCloseNavMenu}
-            >
-              {pages.map((page) => (
-                <MenuItem key={page} onClick={handleCloseNavMenu}>
-                  <Typography textAlign="center">{page}</Typography>
-                </MenuItem>
-              ))}
-            </Menu>
-          </Box>
-
-          {/* Logo */}
-          <AdbIcon sx={{ display: { xs: 'none', md: 'flex' }, mr: 1 }} />
-          <Typography
-            variant="h6"
-            noWrap
-            component="a"
-            href="#"
-            sx={{
-              mr: 2,
-              display: { xs: 'none', md: 'flex' },
-              fontFamily: 'monospace',
-              fontWeight: 700,
-              letterSpacing: '.3rem',
-              color: 'inherit',
-              textDecoration: 'none',
-            }}
+          </Tooltip>
+          <Menu
+            sx={{ mt: '45px' }}
+            anchorEl={anchorElUser}
+            open={Boolean(anchorElUser)}
+            onClose={handleUserMenuClose}
           >
-            LOGO
-          </Typography>
-
-          {/* Buttons */}
-          <Box sx={{ flexGrow: 1, display: { xs: 'none', md: 'flex' } }}>
-            {pages.map((page) => (
-              <Button
-                key={page}
-                onClick={handleCloseNavMenu}
-                sx={{ my: 2, color: 'white', display: 'block' }}
-              >
-                {page}
-              </Button>
-            ))}
-          </Box>
-
-          {/* User Avatar */}
-          <Box sx={{ flexGrow: 0 }}>
-            <Tooltip title="Open settings">
-              <IconButton onClick={handleOpenUserMenu} sx={{ p: 0 }}>
-                <Avatar alt="User Avatar" src="/static/images/avatar/2.jpg" />
-              </IconButton>
-            </Tooltip>
-            <Menu
-              sx={{ mt: '45px' }}
-              id="menu-appbar"
-              anchorEl={anchorElUser}
-              anchorOrigin={{
-                vertical: 'top',
-                horizontal: 'right',
-              }}
-              keepMounted
-              transformOrigin={{
-                vertical: 'top',
-                horizontal: 'right',
-              }}
-              open={Boolean(anchorElUser)}
-              onClose={handleCloseUserMenu}
-            >
-              {settings.map((setting) => (
-                <MenuItem key={setting} onClick={handleCloseUserMenu}>
-                  <Typography textAlign="center">{setting}</Typography>
-                </MenuItem>
-              ))}
-            </Menu>
-          </Box>
-        </Toolbar>
-      </Container>
+            <MenuItem onClick={handleUserMenuClose}>Profile</MenuItem>
+            <MenuItem onClick={handleUserMenuClose}>Account</MenuItem>
+            <MenuItem onClick={handleUserMenuClose}>Dashboard</MenuItem>
+            <MenuItem onClick={handleUserMenuClose}>Logout</MenuItem>
+          </Menu>
+        </Box>
+      </Toolbar>
     </AppBar>
   );
 };
 
-export default ResponsiveAppBar;
+export default Header;
