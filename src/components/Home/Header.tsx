@@ -14,7 +14,7 @@ import MenuItem from '@mui/material/MenuItem';
 import './Header.css'; // Custom CSS for styling
 
 const healthcareOptions = ['Vaccination Info', 'Health Tips', 'Emergency Contacts'];
-const navigationButtons = ['Home', 'News', 'Sign In', 'Login'];
+const navigationButtons = ['Home', 'News', 'Sign Up', 'Login']; // Changed "Sign In" to "Sign Up"
 
 const Header: React.FC = () => {
   const [anchorElMenu, setAnchorElMenu] = React.useState<null | HTMLElement>(null);
@@ -38,8 +38,8 @@ const Header: React.FC = () => {
   };
 
   const handleNavigation = (button: string) => {
-    if (button === 'Sign In') {
-      navigate('/signin'); // Redirect to SignIn page
+    if (button === 'Sign Up') {
+      navigate('/signup'); // Redirect to SignUp page
     } else if (button === 'Login') {
       navigate('/login'); // Redirect to Login page
     } else if (button === 'Home') {

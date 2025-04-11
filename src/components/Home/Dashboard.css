@@ -98,3 +98,183 @@
     margin: 5px 0 0;
     font-size: 1rem;
 }
+
+.dashboard-container {
+    display: flex;
+    min-height: 100vh;
+    background: linear-gradient(to bottom right, #007bff, #ffffff); /* Blue to white gradient */
+    color: #333;
+}
+
+/* Sidebar */
+.sidebar {
+    width: 250px;
+    background-color: #4a00e0;
+    color: #fff;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    padding: 20px;
+    box-shadow: 2px 0 5px rgba(0, 0, 0, 0.1);
+}
+
+.user-profile {
+    display: flex;
+    align-items: center;
+    margin-bottom: 20px;
+    gap: 10px;
+}
+
+.user-avatar {
+    width: 50px;
+    height: 50px;
+    border: 2px solid #fff;
+    border-radius: 50%;
+}
+
+.user-info {
+    text-align: left;
+}
+
+.user-name {
+    font-size: 1.2rem;
+    font-weight: bold;
+    color: #fff;
+}
+
+.user-email {
+    font-size: 0.9rem;
+    color: #ddd;
+}
+
+.sidebar-options {
+    width: 100%;
+}
+
+.sidebar-options .MuiListItem-root {
+    color: #fff;
+    transition: background-color 0.3s ease;
+}
+
+.sidebar-options .MuiListItem-root:hover {
+    background-color: #6a11cb;
+}
+
+/* Main Content */
+.main-content {
+    flex: 1;
+    padding: 20px;
+}
+
+.dashboard-appbar {
+    background-color: #4a00e0; /* Deep purple for the app bar */
+    color: #fff;
+    margin-bottom: 20px;
+}
+
+.dashboard-header {
+    text-align: center;
+    margin-bottom: 30px;
+}
+
+.dashboard-title {
+    flex-grow: 1;
+    text-align: center;
+    font-weight: bold;
+    color: #ffffff;
+}
+
+.dashboard-subtitle {
+    color: #e0e0e0;
+}
+
+/* Dashboard Grid */
+.dashboard-grid {
+    max-width: 1200px;
+    margin: 0 auto;
+    margin-top: 20px;
+}
+
+.dashboard-card {
+    padding: 20px;
+    border-radius: 12px;
+    box-shadow: 0 8px 16px rgba(0, 0, 0, 0.1);
+    background-color: #fff;
+    text-align: center;
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+
+.dashboard-card:hover {
+    transform: scale(1.05); /* Zoom-in effect */
+    box-shadow: 0 12px 24px rgba(0, 0, 0, 0.3);
+}
+
+.card-title {
+    font-weight: bold;
+    margin-bottom: 15px;
+    color: #4a00e0; /* Deep purple for card titles */
+}
+
+.progress-container {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin: 20px 0;
+    position: relative;
+}
+
+.progress-text {
+    position: absolute;
+    font-weight: bold;
+    color: #4a00e0;
+}
+
+.update-button,
+.details-button {
+    margin-top: 15px;
+    text-transform: none;
+    background-color: #4a00e0;
+    color: #ffffff;
+    transition: background-color 0.3s ease, transform 0.3s ease;
+}
+
+.update-button:hover,
+.details-button:hover {
+    background-color: #6a11cb;
+    transform: scale(1.02); /* Slight zoom-in effect */
+}
+
+/* Vaccine Suggestion Interface */
+.vaccine-suggestion {
+    width: 300px;
+    background-color: #f9f9f9;
+    padding: 20px;
+    border-radius: 12px;
+    box-shadow: 0 8px 16px rgba(0, 0, 0, 0.1);
+    margin-left: 20px;
+}
+
+.suggestion-title {
+    font-weight: bold;
+    margin-bottom: 15px;
+    color: #007bff;
+}
+
+.suggestion-card {
+    padding: 15px;
+    background-color: #fff;
+    border-radius: 8px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+}
+
+.schedule-button {
+    margin-top: 15px;
+    text-transform: none;
+    background-color: #007bff;
+    color: #fff;
+    transition: background-color 0.3s ease;
+}
+
+.schedule-button:hover {
+    background-color: #0056b3;
+}

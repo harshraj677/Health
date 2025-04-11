@@ -4,8 +4,8 @@
   "description": "A vaccine tracker recommendation application.",
   "main": "index.js",
   "scripts": {
-    "start": "react-scripts start",
-    "build": "react-scripts build",
+    "start": "set NODE_OPTIONS=--openssl-legacy-provider && react-scripts start",
+    "build": "set NODE_OPTIONS=--openssl-legacy-provider && react-scripts build",
     "test": "react-scripts test",
     "eject": "react-scripts eject"
   },
@@ -25,11 +25,17 @@
     "@mui/material": "^5.17.1",
     "@tanstack/react-query": "^5.72.2",
     "axios": "^1.8.4",
+    "bcrypt": "^5.1.1",
+    "body-parser": "^2.2.0",
+    "cors": "^2.8.5",
     "dayjs": "^1.11.13",
+    "express": "^5.1.0",
     "formik": "^2.4.6",
+    "jsonwebtoken": "^9.0.2",
     "moment": "^2.30.1",
-    "react": "^18.3.1",
-    "react-dom": "^18.3.1",
+    "mongoose": "^8.13.2",
+    "react": "^18.0.0",
+    "react-dom": "^18.0.0",
     "react-icons": "^5.5.0",
     "react-router-dom": "^7.5.0",
     "react-scripts": "^5.0.1",
@@ -37,8 +43,8 @@
     "yup": "^1.6.1"
   },
   "devDependencies": {
-    "@types/react": "^17.0.85",
-    "@types/react-dom": "^17.0.26",
+    "@types/react": "^18.0.0",
+    "@types/react-dom": "^18.0.0",
     "@types/react-router-dom": "^5.3.3",
     "typescript": "^4.9.5"
   },

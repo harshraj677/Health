@@ -44,64 +44,67 @@ const Signup: React.FC = () => {
 
     return (
         <div className="auth-container">
-            <h1>Signup</h1>
-            <form onSubmit={handleSignup} className="auth-form">
-                <label>
-                    Email:
-                    <input
-                        type="email"
-                        value={email}
-                        onChange={(e) => setEmail(e.target.value)}
-                        required
-                    />
-                </label>
-                <label>
-                    Password:
-                    <div className="password-container">
+            <div className="auth-card">
+                <h1 className="auth-title">Create Your Account</h1>
+                <p className="auth-subtitle">Join VaxAI Bharat and stay updated on your health</p>
+                <form onSubmit={handleSignup} className="auth-form">
+                    <label>
+                        Email:
                         <input
-                            type={showPassword ? 'text' : 'password'}
-                            value={password}
-                            onChange={(e) => {
-                                setPassword(e.target.value);
-                                validatePasswordStrength(e.target.value);
-                            }}
+                            type="email"
+                            value={email}
+                            onChange={(e) => setEmail(e.target.value)}
                             required
                         />
-                        <button
-                            type="button"
-                            className="toggle-password"
-                            onClick={() => setShowPassword(!showPassword)}
-                        >
-                            {showPassword ? 'Hide' : 'Show'}
-                        </button>
+                    </label>
+                    <label>
+                        Password:
+                        <div className="password-container">
+                            <input
+                                type={showPassword ? 'text' : 'password'}
+                                value={password}
+                                onChange={(e) => {
+                                    setPassword(e.target.value);
+                                    validatePasswordStrength(e.target.value);
+                                }}
+                                required
+                            />
+                            <button
+                                type="button"
+                                className="toggle-password"
+                                onClick={() => setShowPassword(!showPassword)}
+                            >
+                                {showPassword ? 'Hide' : 'Show'}
+                            </button>
+                        </div>
+                    </label>
+                    <div className="password-strength">
+                        <progress value={passwordStrength} max="5"></progress>
+                        <p>
+                            Password Strength: {['Weak', 'Fair', 'Good', 'Strong', 'Very Strong'][passwordStrength]}
+                        </p>
                     </div>
-                </label>
-                <div className="password-strength">
-                    <progress value={passwordStrength} max="5"></progress>
-                    <p>
-                        Password Strength: {['Weak', 'Fair', 'Good', 'Strong', 'Very Strong'][passwordStrength]}
-                    </p>
-                </div>
-                <label>
-                    Confirm Password:
-                    <input
-                        type="password"
-                        value={confirmPassword}
-                        onChange={(e) => setConfirmPassword(e.target.value)}
-                        required
-                    />
-                </label>
-                <label className="terms">
-                    <input
-                        type="checkbox"
-                        checked={termsAccepted}
-                        onChange={(e) => setTermsAccepted(e.target.checked)}
-                    />
-                    I accept the terms and conditions
-                </label>
-                {error && <p className="error">{error}</p>}
-                <button type="submit" className="auth-button">Signup</button>
-            </form>
+                    <label>
+                        Confirm Password:
+                        <input
+                            type="password"
+                            value={confirmPassword}
+                            onChange={(e) => setConfirmPassword(e.target.value)}
+                            required
+                        />
+                    </label>
+                    <label className="terms">
+                        <input
+                            type="checkbox"
+                            checked={termsAccepted}
+                            onChange={(e) => setTermsAccepted(e.target.checked)}
+                        />
+                        I accept the terms and conditions
+                    </label>
+                    {error && <p className="error">{error}</p>}
+                    <button type="submit" className="auth-button">Signup</button>
+                </form>
+            </div>
         </div>
     );
 };
